@@ -1,0 +1,12 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "appService.defaultWebAppToDeploy": "/subscriptions/d662e9ce-3bbf-410a-8d0c-87a2a67cab8c/resourceGroups/SugamNagarro/providers/Microsoft.Web/sites/SugamWebApp",
+  "appService.deploySubpath": "target\\CustomerManagementService-0.0.1-SNAPSHOT.jar",
+  "azureFunctions.deploySubpath": ".",
+  "azureFunctions.postDeployTask": "npm install (functions)",
+  "azureFunctions.projectLanguage": "JavaScript",
+  "azureFunctions.projectRuntime": "~4",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.projectLanguageModel": 4,
+  "azureFunctions.preDeployTask": "npm prune (functions)"
+}
