@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'docker-hub-credential'
-        DOCKER_IMAGE = 'sugammehra12/CustomerManagementService'
+        DOCKER_IMAGE = 'sugammehra12/customermanagementservice'
         SONARQUBE_SERVER = 'SonarQube' // Name of your SonarQube server in Jenkins
     }
 
