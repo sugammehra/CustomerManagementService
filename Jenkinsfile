@@ -16,7 +16,7 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh './mvnw clean package'
+                bat './mvnw clean package'
             }
         }
 
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 // Add your deployment steps here, e.g., using kubectl or docker run
                 // For example, using Docker Compose:
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             }
         }
     }
