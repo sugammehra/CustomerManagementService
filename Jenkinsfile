@@ -20,28 +20,18 @@ pipeline {
             }
         }
         
-         stage('SonarQube Analysis') {
-		    environment {
-		        scannerHome = tool 'SonarQubeScanner' // Define SonarQube scanner tool in Jenkins
-		    }
+        
+	   stage('SonarQube Analysis') {
 		    steps {
 		        script {
-		            def scannerArgs = [
-		                "-Dsonar.projectKey=CustomerManagementServiceProject",
-		                "-Dsonar.sources=src",
-		                "-Dsonar.host.url=http://localhost:9000"
-		            ]
-		            withCredentials([usernamePassword(credentialsId: 'sonar-credentials', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]) {
-		                scannerArgs << "-Dsonar.login=\${SONAR_LOGIN}:${SONAR_PASSWORD}"
-		                withSonarQubeEnv('SonarQube') {
-		                    bat "${scannerHome}\\bin\\sonar-scanner.bat " + scannerArgs.join(" ")
+		            withMaven(maven: 'MavenV_3.9.6') {
+		                withCredentials([string(credentialsId: 'customerManagementProject-token', variable: 'SONAR_TOKEN')]) {
+		                    bat "mvn sonar:sonar -Dsonar.projectKey=CustomerManagementServiceProject -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${SONAR_TOKEN}"
 		                }
 		            }
 		        }
 		    }
-		   }
-			
-
+		}
 
         stage('Build Docker Image') {
             steps {
