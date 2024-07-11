@@ -31,7 +31,7 @@ pipeline {
 		                "-Dsonar.sources=src",
 		                "-Dsonar.host.url=http://localhost:9000"
 		            ]
-		            withCredentials([usernamePassword(credentialsId: 'customerManagementProject-token', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]) {
+		            withCredentials([usernamePassword(credentialsId: 'sonar-credentials', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]) {
 		                scannerArgs << "-Dsonar.login=\${SONAR_LOGIN}:${SONAR_PASSWORD}"
 		                withSonarQubeEnv('SonarQube') {
 		                    bat "${scannerHome}\\bin\\sonar-scanner.bat " + scannerArgs.join(" ")
