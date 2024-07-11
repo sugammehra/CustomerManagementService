@@ -93,6 +93,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>CustomerManagementService</finalName>
 	</build>
 
 </project>
