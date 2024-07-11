@@ -6,8 +6,6 @@ EXPOSE 8181
 COPY target/CustomerManagementService.jar CustomerManagementService.jar
 
 # Run the jar file
-<<<<<<< Updated upstream:Dockerfile
-ENTRYPOINT ["java", "-jar", "app.jar"]
-=======
+
 ENTRYPOINT ["java", "-jar", "CustomerManagementService.jar"]
->>>>>>> Stashed changes:dockerFile
+

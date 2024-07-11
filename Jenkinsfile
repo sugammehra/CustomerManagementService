@@ -54,8 +54,4 @@ pipeline {
             cleanWs()
         }
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
