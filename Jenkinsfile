@@ -20,13 +20,9 @@ pipeline {
             }
         }
 
-        
-
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${env.DOCKER_IMAGE}:${env.BUILD_ID}")
-                }
+                bat "docker build -t ${env.DOCKER_IMAGE}:${env.BUILD_ID} ."
             }
         }
 
@@ -34,7 +30,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', env.DOCKER_CREDENTIALS_ID) {
-                        docker.image("${env.DOCKER_IMAGE}:${env.BUILD_ID}").push()
+                        bat "docker push ${env.DOCKER_IMAGE}:${env.BUILD_ID}"
                     }
                 }
             }
@@ -43,8 +39,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Add your deployment steps here, e.g., using kubectl or docker run
-                // For example, using Docker Compose:
-                bat 'docker-compose up -d'
+                // Example deployment command:
+                bat "docker run -d -p 8181:8181 ${env.DOCKER_IMAGE}:${env.BUILD_ID}"
             }
         }
     }
